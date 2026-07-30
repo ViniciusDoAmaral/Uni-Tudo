@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
+import { getThemeStyles } from '../utils/theme';
 import {
   Sparkles,
   MessageCircle,
@@ -28,6 +29,7 @@ interface HomeViewProps {
 
 export const HomeView: React.FC<HomeViewProps> = ({ onOpenNewOrder }) => {
   const { settings, updateSettings, setActiveTab, products } = useApp();
+  const themeStyles = getThemeStyles(settings.primaryColor);
 
   const [showImageModal, setShowImageModal] = useState(false);
   const [imageUrlInput, setImageUrlInput] = useState(settings.storeBannerUrl || '');
@@ -184,14 +186,14 @@ export const HomeView: React.FC<HomeViewProps> = ({ onOpenNewOrder }) => {
           {/* Dashboard Shortcut */}
           <button
             onClick={() => setActiveTab('dashboard')}
-            className="p-3.5 rounded-2xl bg-gradient-to-br from-[#2E6F40] to-[#1E4D2B] text-white shadow-sm border border-[#3E8F52] flex flex-col items-start gap-2 hover:brightness-105 transition-all text-left"
+            className={`p-3.5 rounded-2xl ${themeStyles.headerBg} text-white shadow-sm border border-white/20 flex flex-col items-start gap-2 hover:brightness-105 transition-all text-left cursor-pointer`}
           >
             <div className="p-2 rounded-xl bg-white/10 backdrop-blur-xs">
-              <LayoutDashboard className="w-5 h-5 text-emerald-200" />
+              <LayoutDashboard className="w-5 h-5 text-white" />
             </div>
             <div>
               <span className="text-xs font-bold block">Painel de Gestão</span>
-              <span className="text-[10px] text-emerald-100/80 leading-tight block">
+              <span className="text-[10px] text-white/80 leading-tight block">
                 Faturamento, lucros e relatórios
               </span>
             </div>
@@ -200,7 +202,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onOpenNewOrder }) => {
           {/* New Order Shortcut */}
           <button
             onClick={onOpenNewOrder}
-            className="p-3.5 rounded-2xl bg-gradient-to-br from-[#7A4B29] to-[#5C381E] text-white shadow-sm border border-[#9C6A42] flex flex-col items-start gap-2 hover:brightness-105 transition-all text-left"
+            className={`p-3.5 rounded-2xl ${themeStyles.bgPrimary} ${themeStyles.bgHover} text-white shadow-sm border border-white/20 flex flex-col items-start gap-2 transition-all text-left cursor-pointer`}
           >
             <div className="p-2 rounded-xl bg-white/10 backdrop-blur-xs">
               <Plus className="w-5 h-5 text-amber-200" />

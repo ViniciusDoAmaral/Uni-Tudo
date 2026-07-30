@@ -100,7 +100,9 @@ export interface Customer {
   phone: string;
   email?: string;
   city?: string;
+  address?: string;
   notes?: string;
+  avatarUrl?: string;
   totalOrders: number;
   totalSpent: number;
   createdAt: string;
@@ -116,7 +118,17 @@ export interface GoogleUser {
 export type SyncStatus = 'connected' | 'syncing' | 'offline' | 'error';
 
 export type ThemeMode = 'light' | 'dark' | 'wood';
-export type PrimaryColor = 'emerald' | 'amber' | 'blue' | 'rose' | 'purple';
+export type PrimaryColor =
+  | 'emerald'
+  | 'amber'
+  | 'blue'
+  | 'indigo'
+  | 'rose'
+  | 'purple'
+  | 'orange'
+  | 'teal'
+  | 'gold'
+  | 'slate';
 
 export interface AppSettings {
   businessName: string;

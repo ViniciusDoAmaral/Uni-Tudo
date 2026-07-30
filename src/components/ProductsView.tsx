@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { Product, ProductCategory } from '../types';
+import { getThemeStyles } from '../utils/theme';
 import {
   Package,
   Search,
@@ -26,6 +27,7 @@ export const ProductsView: React.FC<{ onOpenNewProduct: () => void }> = ({
   onOpenNewProduct,
 }) => {
   const { products, deleteProduct, settings } = useApp();
+  const themeStyles = getThemeStyles(settings.primaryColor);
 
   const [search, setSearch] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<'Todos' | ProductCategory>('Todos');
@@ -74,7 +76,7 @@ export const ProductsView: React.FC<{ onOpenNewProduct: () => void }> = ({
 
         <button
           onClick={onOpenNewProduct}
-          className="py-2 px-3 bg-[#2E6F40] hover:bg-[#245832] text-white font-bold text-xs rounded-xl shadow-sm flex items-center gap-1.5 transition-colors"
+          className={`py-2 px-3 ${themeStyles.bgPrimary} ${themeStyles.bgHover} text-white font-bold text-xs rounded-xl shadow-sm flex items-center gap-1.5 transition-colors cursor-pointer`}
         >
           <Plus className="w-4 h-4" />
           Novo Produto

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
+import { getThemeStyles } from '../utils/theme';
 import {
   SaleOrderItem,
   PaymentMethod,
@@ -21,7 +22,8 @@ interface NewOrderModalProps {
 }
 
 export const NewOrderModal: React.FC<NewOrderModalProps> = ({ onClose }) => {
-  const { products, customers, addOrder } = useApp();
+  const { products, customers, addOrder, settings } = useApp();
+  const themeStyles = getThemeStyles(settings.primaryColor);
 
   const [customerName, setCustomerName] = useState('');
   const [customerPhone, setCustomerPhone] = useState('');
@@ -399,7 +401,7 @@ export const NewOrderModal: React.FC<NewOrderModalProps> = ({ onClose }) => {
             </button>
             <button
               type="submit"
-              className="flex-1 py-2.5 bg-[#2E6F40] hover:bg-[#235832] text-white font-bold text-xs rounded-xl shadow-md flex items-center justify-center gap-1.5"
+              className={`flex-1 py-2.5 ${themeStyles.bgPrimary} ${themeStyles.bgHover} text-white font-bold text-xs rounded-xl shadow-md flex items-center justify-center gap-1.5 cursor-pointer`}
             >
               <Check className="w-4 h-4" /> Confirma Pedido
             </button>

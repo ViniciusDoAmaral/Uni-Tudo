@@ -1,5 +1,6 @@
 import React from 'react';
 import { useApp } from '../context/AppContext';
+import { getThemeStyles } from '../utils/theme';
 import { Home, LayoutDashboard, Package, Warehouse, ShoppingCart, Users } from 'lucide-react';
 
 export const Navigation: React.FC = () => {
@@ -12,6 +13,7 @@ export const Navigation: React.FC = () => {
   const lowStockCount = products.filter((p) => p.currentStock <= p.minStock).length;
 
   const themeMode = settings.themeMode || 'wood';
+  const themeStyles = getThemeStyles(settings.primaryColor);
 
   const navBg =
     themeMode === 'light'
@@ -20,12 +22,7 @@ export const Navigation: React.FC = () => {
       ? 'bg-[#182230] border-[#253248] text-gray-300 shadow-md'
       : 'bg-[#FAF6F0] border-[#E6DEC3] text-[#6C5B4C] shadow-[0_-4px_12px_rgba(0,0,0,0.06)]';
 
-  const activeItemStyle =
-    themeMode === 'light'
-      ? 'text-[#2E6F40] bg-[#EAF3EC] font-bold scale-105'
-      : themeMode === 'dark'
-      ? 'text-emerald-400 bg-emerald-950/60 font-bold scale-105'
-      : 'text-[#2E6F40] bg-[#EAF3EC] font-bold scale-105';
+  const activeItemStyle = themeStyles.activeNav;
 
   const inactiveItemStyle =
     themeMode === 'light'
@@ -94,7 +91,7 @@ export const Navigation: React.FC = () => {
           <ShoppingCart className="w-4 h-4 mb-0.5" />
           <span className="text-[10px] tracking-tight">Vendas</span>
           {activeOrdersCount > 0 && (
-            <span className="absolute -top-0.5 right-0.5 bg-[#2E6F40] text-white text-[9px] font-bold px-1.5 py-0.2 rounded-full border border-white">
+            <span className={`absolute -top-0.5 right-0.5 ${themeStyles.bgPrimary} text-white text-[9px] font-bold px-1.5 py-0.2 rounded-full border border-white`}>
               {activeOrdersCount}
             </span>
           )}

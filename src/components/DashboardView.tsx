@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
+import { getThemeStyles } from '../utils/theme';
 import {
   TrendingUp,
   DollarSign,
@@ -24,6 +25,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
   onOpenNewProduct,
 }) => {
   const { products, orders, setActiveTab, settings } = useApp();
+  const themeStyles = getThemeStyles(settings.primaryColor);
 
   // Quick Calculator State
   const [calcCost, setCalcCost] = useState<number>(50);
@@ -56,11 +58,11 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
   return (
     <div className="space-y-4 pb-20">
       {/* Top Welcome Banner */}
-      <div className="bg-gradient-to-br from-[#7A4B29] to-[#5C381E] rounded-2xl p-4 text-white shadow-md relative overflow-hidden">
-        <div className="absolute -right-6 -bottom-6 w-28 h-28 bg-[#2E6F40]/30 rounded-full blur-xl pointer-events-none" />
+      <div className={`${themeStyles.headerBg} rounded-2xl p-4 text-white shadow-md relative overflow-hidden transition-colors duration-200`}>
+        <div className="absolute -right-6 -bottom-6 w-28 h-28 bg-white/10 rounded-full blur-xl pointer-events-none" />
         <div className="flex items-center justify-between relative z-10">
           <div>
-            <span className="text-[11px] font-bold uppercase tracking-wider text-[#E2C392] bg-black/20 px-2 py-0.5 rounded-md border border-[#9E7348]">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-amber-200 bg-black/20 px-2 py-0.5 rounded-md border border-white/20">
               Visão Geral Financeira
             </span>
             <h2 className="text-xl font-bold mt-1 text-[#FDFBF7]">
@@ -70,8 +72,8 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
               Controle de faturamento, margens e pedidos de personalização
             </p>
           </div>
-          <div className="w-12 h-12 rounded-2xl bg-[#FAF6F0]/10 backdrop-blur-xs flex items-center justify-center border border-white/20">
-            <TrendingUp className="w-6 h-6 text-[#A3E0B2]" />
+          <div className="w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-xs flex items-center justify-center border border-white/20">
+            <TrendingUp className="w-6 h-6 text-white" />
           </div>
         </div>
 
@@ -79,7 +81,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
         <div className="grid grid-cols-2 gap-2 mt-4 pt-3 border-t border-white/15">
           <button
             onClick={onOpenNewOrder}
-            className="py-2 px-3 bg-[#2E6F40] hover:bg-[#245832] text-white font-bold text-xs rounded-xl shadow-sm transition-all flex items-center justify-center gap-1.5 border border-[#438250]"
+            className={`py-2 px-3 ${themeStyles.bgPrimary} ${themeStyles.bgHover} text-white font-bold text-xs rounded-xl shadow-sm transition-all flex items-center justify-center gap-1.5 border border-white/20 cursor-pointer`}
           >
             <PlusCircle className="w-4 h-4" />
             Nova Venda Rápida

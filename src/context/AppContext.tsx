@@ -57,6 +57,8 @@ interface AppContextType {
 
   // Customer actions
   addCustomer: (customer: Omit<Customer, 'id' | 'totalOrders' | 'totalSpent' | 'createdAt'>) => void;
+  updateCustomer: (id: string, customerData: Partial<Customer>) => void;
+  deleteCustomer: (id: string) => void;
 
   // Settings
   updateSettings: (newSettings: Partial<AppSettings>) => void;
@@ -478,11 +480,23 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     const newCust: Customer = {
       ...customerData,
       id: `cust-${Date.now()}`,
-      totalOrders: 1,
+      totalOrders: 0,
       totalSpent: 0,
       createdAt: now,
     };
     const updatedCustomers = [newCust, ...customers];
+    setCustomers(updatedCustomers);
+    pushStateToCloud(products, updatedCustomers, orders, movements, settings);
+  };
+
+  const updateCustomer = (id: string, customerData: Partial<Customer>) => {
+    const updatedCustomers = customers.map((c) => (c.id === id ? { ...c, ...customerData } : c));
+    setCustomers(updatedCustomers);
+    pushStateToCloud(products, updatedCustomers, orders, movements, settings);
+  };
+
+  const deleteCustomer = (id: string) => {
+    const updatedCustomers = customers.filter((c) => c.id !== id);
     setCustomers(updatedCustomers);
     pushStateToCloud(products, updatedCustomers, orders, movements, settings);
   };
@@ -527,6 +541,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         updateOrderStatus,
         deleteOrder,
         addCustomer,
+        updateCustomer,
+        deleteCustomer,
         updateSettings,
         resetToInitialData,
       }}

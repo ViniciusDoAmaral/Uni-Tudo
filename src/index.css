@@ -23,10 +23,111 @@ html, body, #root {
   scrollbar-width: none;
 }
 
-/* Theme Classes */
+/* Base Root Color Variables (Default Emerald) */
+:root {
+  --color-brand-50: #EAF3EC;
+  --color-brand-100: #D0E7D5;
+  --color-brand-500: #2E6F40;
+  --color-brand-600: #235832;
+  --color-brand-700: #1B4527;
+  --color-brand-border: #438250;
+}
+
+/* Primary Color Theme Classes */
+body.color-emerald {
+  --color-brand-50: #EAF3EC;
+  --color-brand-100: #D0E7D5;
+  --color-brand-500: #2E6F40;
+  --color-brand-600: #235832;
+  --color-brand-700: #1B4527;
+  --color-brand-border: #438250;
+}
+
+body.color-amber {
+  --color-brand-50: #FDF8F3;
+  --color-brand-100: #F7E8D8;
+  --color-brand-500: #7A4B29;
+  --color-brand-600: #633B1F;
+  --color-brand-700: #4D2D17;
+  --color-brand-border: #9C6A42;
+}
+
+body.color-blue {
+  --color-brand-50: #EFF6FF;
+  --color-brand-100: #DBEAFE;
+  --color-brand-500: #2563EB;
+  --color-brand-600: #1D4ED8;
+  --color-brand-700: #1E40AF;
+  --color-brand-border: #3B82F6;
+}
+
+body.color-indigo {
+  --color-brand-50: #EEF2FF;
+  --color-brand-100: #E0E7FF;
+  --color-brand-500: #4F46E5;
+  --color-brand-600: #4338CA;
+  --color-brand-700: #3730A3;
+  --color-brand-border: #6366F1;
+}
+
+body.color-rose {
+  --color-brand-50: #FFF1F2;
+  --color-brand-100: #FFE4E6;
+  --color-brand-500: #E11D48;
+  --color-brand-600: #BE123C;
+  --color-brand-700: #9F1239;
+  --color-brand-border: #F43F5E;
+}
+
+body.color-purple {
+  --color-brand-50: #FAF5FF;
+  --color-brand-100: #F3E8FF;
+  --color-brand-500: #9333EA;
+  --color-brand-600: #7E22CE;
+  --color-brand-700: #6B21A8;
+  --color-brand-border: #A855F7;
+}
+
+body.color-orange {
+  --color-brand-50: #FFF7ED;
+  --color-brand-100: #FFEDD5;
+  --color-brand-500: #EA580C;
+  --color-brand-600: #C2410C;
+  --color-brand-700: #9A3412;
+  --color-brand-border: #F97316;
+}
+
+body.color-teal {
+  --color-brand-50: #F0FDFA;
+  --color-brand-100: #CCFBF1;
+  --color-brand-500: #0D9488;
+  --color-brand-600: #0F766E;
+  --color-brand-700: #115E59;
+  --color-brand-border: #14B8A6;
+}
+
+body.color-gold {
+  --color-brand-50: #FEFCE8;
+  --color-brand-100: #FEF08A;
+  --color-brand-500: #CA8A04;
+  --color-brand-600: #A16207;
+  --color-brand-700: #854D0E;
+  --color-brand-border: #EAB308;
+}
+
+body.color-slate {
+  --color-brand-50: #F8FAFC;
+  --color-brand-100: #E2E8F0;
+  --color-brand-500: #475569;
+  --color-brand-600: #334155;
+  --color-brand-700: #1E293B;
+  --color-brand-border: #64748B;
+}
+
+/* Background Theme Modes */
 body.theme-dark {
-  background-color: #121820 !important;
-  color: #F3F4F6 !important;
+  background-color: #0F172A !important;
+  color: #F8FAFC !important;
 }
 
 body.theme-light {
@@ -37,4 +138,33 @@ body.theme-light {
 body.theme-wood {
   background-color: #FAF6F0 !important;
   color: #2C1E16 !important;
+}
+
+/* Dynamic Brand Utility Classes */
+.bg-brand-primary {
+  background-color: var(--color-brand-500) !important;
+}
+.bg-brand-hover:hover {
+  background-color: var(--color-brand-600) !important;
+}
+.bg-brand-light {
+  background-color: var(--color-brand-50) !important;
+}
+.text-brand-primary {
+  color: var(--color-brand-500) !important;
+}
+.text-brand-dark {
+  color: var(--color-brand-700) !important;
+}
+.text-brand-light {
+  color: var(--color-brand-50) !important;
+}
+.border-brand-primary {
+  border-color: var(--color-brand-500) !important;
+}
+.border-brand-accent {
+  border-color: var(--color-brand-border) !important;
+}
+.ring-brand-primary {
+  --tw-ring-color: var(--color-brand-500) !important;
 }

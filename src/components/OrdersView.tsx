@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { SaleOrder, OrderStatus } from '../types';
+import { getThemeStyles } from '../utils/theme';
 import {
   ShoppingCart,
   Plus,
@@ -28,7 +29,8 @@ const STATUS_OPTIONS: ('Todos' | OrderStatus)[] = [
 export const OrdersView: React.FC<{ onOpenNewOrder: () => void }> = ({
   onOpenNewOrder,
 }) => {
-  const { orders, updateOrderStatus, deleteOrder } = useApp();
+  const { orders, updateOrderStatus, deleteOrder, settings } = useApp();
+  const themeStyles = getThemeStyles(settings.primaryColor);
 
   const [search, setSearch] = useState('');
   const [selectedStatus, setSelectedStatus] = useState<'Todos' | OrderStatus>('Todos');
@@ -62,7 +64,7 @@ export const OrdersView: React.FC<{ onOpenNewOrder: () => void }> = ({
 
         <button
           onClick={onOpenNewOrder}
-          className="py-2 px-3 bg-[#2E6F40] hover:bg-[#245832] text-white font-bold text-xs rounded-xl shadow-sm flex items-center gap-1.5 transition-colors"
+          className={`py-2 px-3 ${themeStyles.bgPrimary} ${themeStyles.bgHover} text-white font-bold text-xs rounded-xl shadow-sm flex items-center gap-1.5 transition-colors cursor-pointer`}
         >
           <Plus className="w-4 h-4" />
           Novo Pedido

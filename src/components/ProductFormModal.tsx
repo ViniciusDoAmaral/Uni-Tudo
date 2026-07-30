@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Product, ProductCategory } from '../types';
 import { useApp } from '../context/AppContext';
+import { getThemeStyles } from '../utils/theme';
 import {
   Package,
   DollarSign,
@@ -31,6 +32,7 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
   onClose,
 }) => {
   const { addProduct, updateProduct, settings } = useApp();
+  const themeStyles = getThemeStyles(settings.primaryColor);
 
   const [name, setName] = useState(productToEdit?.name || '');
   const [sku, setSku] = useState(
@@ -511,7 +513,7 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
             </button>
             <button
               type="submit"
-              className="flex-1 py-2.5 bg-[#2E6F40] hover:bg-[#235832] text-white font-bold text-xs rounded-xl shadow-md flex items-center justify-center gap-1.5"
+              className={`flex-1 py-2.5 ${themeStyles.bgPrimary} ${themeStyles.bgHover} text-white font-bold text-xs rounded-xl shadow-md flex items-center justify-center gap-1.5 cursor-pointer`}
             >
               <Check className="w-4 h-4" />
               {productToEdit ? 'Atualizar Produto' : 'Cadastrar Produto'}

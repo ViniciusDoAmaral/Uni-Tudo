@@ -18,14 +18,23 @@ function MainAppShell() {
   const [showNewOrderModal, setShowNewOrderModal] = useState(false);
 
   const themeMode = settings.themeMode || 'wood';
+  const primaryColor = settings.primaryColor || 'emerald';
 
-  // Apply body theme class & overflow-x lock
+  // Apply body theme class, primary color accent & overflow-x lock
   useEffect(() => {
     document.body.classList.remove('theme-light', 'theme-dark', 'theme-wood');
     document.body.classList.add(`theme-${themeMode}`);
+
+    document.body.classList.remove(
+      'color-emerald', 'color-amber', 'color-blue', 'color-indigo',
+      'color-rose', 'color-purple', 'color-orange', 'color-teal',
+      'color-gold', 'color-slate'
+    );
+    document.body.classList.add(`color-${primaryColor}`);
+
     document.body.style.overflowX = 'hidden';
     document.documentElement.style.overflowX = 'hidden';
-  }, [themeMode]);
+  }, [themeMode, primaryColor]);
 
   // Outer & Container Theme Styles
   const outerBg =

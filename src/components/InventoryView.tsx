@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { MovementType, MovementReason } from '../types';
+import { getThemeStyles } from '../utils/theme';
 import {
   Warehouse,
   AlertCircle,
@@ -15,7 +16,8 @@ import {
 } from 'lucide-react';
 
 export const InventoryView: React.FC = () => {
-  const { products, movements, addInventoryMovement } = useApp();
+  const { products, movements, addInventoryMovement, settings } = useApp();
+  const themeStyles = getThemeStyles(settings.primaryColor);
 
   const [selectedProductId, setSelectedProductId] = useState<string>('');
   const [movementType, setMovementType] = useState<MovementType>('in');
@@ -69,7 +71,7 @@ export const InventoryView: React.FC = () => {
             if (products.length > 0) setSelectedProductId(products[0].id);
             setShowMovementModal(true);
           }}
-          className="py-2 px-3 bg-[#2E6F40] hover:bg-[#245832] text-white font-bold text-xs rounded-xl shadow-sm flex items-center gap-1.5 transition-colors"
+          className={`py-2 px-3 ${themeStyles.bgPrimary} ${themeStyles.bgHover} text-white font-bold text-xs rounded-xl shadow-sm flex items-center gap-1.5 transition-colors cursor-pointer`}
         >
           <PlusCircle className="w-4 h-4" />
           Lançar Movimentação
@@ -393,7 +395,7 @@ export const InventoryView: React.FC = () => {
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 py-2 bg-[#2E6F40] text-white font-bold text-xs rounded-xl shadow-md"
+                  className={`flex-1 py-2 ${themeStyles.bgPrimary} ${themeStyles.bgHover} text-white font-bold text-xs rounded-xl shadow-md cursor-pointer`}
                 >
                   Confirmar
                 </button>

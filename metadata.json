@@ -1,0 +1,6 @@
+{
+  "name": "Uni Tudo",
+  "description": "Sistema ERP mobile com sincronização em tempo real na nuvem e autenticação Google.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": []
+}

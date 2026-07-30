@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+html, body, #root {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden !important;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+*, ::before, ::after {
+  box-sizing: border-box;
+}
+
+/* Hide scrollbars for smooth mobile pill sliders */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Theme Classes */
+body.theme-dark {
+  background-color: #121820 !important;
+  color: #F3F4F6 !important;
+}
+
+body.theme-light {
+  background-color: #F8FAFC !important;
+  color: #0F172A !important;
+}
+
+body.theme-wood {
+  background-color: #FAF6F0 !important;
+  color: #2C1E16 !important;
+}
